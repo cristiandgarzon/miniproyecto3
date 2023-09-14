@@ -1,0 +1,88 @@
+.bodyDashboard{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+   background-color: rgb(248, 249, 250);
+   margin: 0;
+   padding: 0;
+}
+
+.navbar{
+    width: 100%;
+    background-color:none;
+    display: flex;
+    align-items: baseline;
+    justify-content: baseline;
+}
+.profileInfo{
+    display: flex;
+    align-items: center;
+    align-items: center;
+    justify-content: center;
+    
+}
+.name{
+    margin-top:17px;
+}
+.titulolog{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.genContainer{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+.detailsContainer{
+    
+    width: 90%;
+    height: 45vh;
+    justify-items: center;
+    justify-content: center;
+    border: solid rgb(221, 215, 215) 2px;
+    
+    border-radius: 25px;
+}
+
+.listLog{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    
+}
+.elist{
+    width: 100%;
+    display: flex;
+    align-self: center;
+    justify-content: space-between;
+    border: solid rgb(221, 215, 215) 2px;
+    
+    align-items: center;
+    
+
+    
+    
+}
+
+.dcrpt{
+    margin: 0px;
+    
+    width: 20%;
+    height: 50px;
+   
+    
+}
+.useri{
+    padding-right: 20rem;
+}

@@ -1,0 +1,99 @@
+
+
+.body_index{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20%;
+}
+.container1{
+display: flex;
+flex-direction: column;
+min-width: 375px;
+
+width: 40%;
+justify-content: center;
+align-items: center;
+border: solid rgb(228, 223, 223) 2px;
+border-radius: 25px;
+
+
+}
+.logor{
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    margin: 20px;
+    padding-left: 25px;
+
+}
+.p1r{
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 2rem 1rem 2rem;
+}
+
+
+.forma{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    
+    margin: 0 auto;
+    
+}
+.iconi{
+    position: absolute;
+    top: 12px;
+    left: 10px;
+    
+}
+.login{
+    position: relative;
+}
+.login input{
+    padding-left: 30px;
+}
+
+.redes{
+    display: flex;
+}
+.red{
+    margin: 10px;
+    cursor: pointer;
+}
+
+.titulo{
+    background-color:rgb(241, 132, 132);
+    width: 200px;
+}
+/*fin estilos index.php */
+/*inicio estilos login.php*/
+.body_login{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20%;
+}
+.Container2{
+    display: flex;
+flex-direction: column;
+min-width: 375px;
+
+width: 40%;
+justify-content: center;
+align-items: center;
+border: solid rgb(228, 223, 223) 2px;
+border-radius: 25px;
+}
+.formal{
+   
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    
+    margin: 0 auto;
+}
+.btnlog{
+    width: 100%;
+}
