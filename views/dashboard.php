@@ -1,7 +1,8 @@
 <?php
     session_start();
     if(!isset($_SESSION["user_data"])){
-        echo"Debes iniciar sesion";
+        echo"Debes iniciar sesion<br><br>";
+        echo"<a href='/views/login.php'>Login</a>";
         die();
 
     }
@@ -17,6 +18,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/4baf7d2e5d.js" crossorigin="anonymous"></script>
+
     <title>dashboard</title>
     <link rel="stylesheet" href="/css/dashboard.css">
 </head>
@@ -24,15 +27,34 @@
 <body class="bodyDashboard">
     <?php
         
-        $email = $_SESSION["user_data"]["email"];
 
-        $name= ($_SESSION["user_data"]["name"]!=NULL)? $_SESSION["user_data"]["name"]:"Add your name";
+        
 
-        $bio= ($_SESSION["user_data"]["bio"]!=NULL)?$_SESSION["user_data"]["bio"]:"Edit your Bio";
+     
+ 
+ 
+    
+     $id=$_SESSION["user_data"]["id"];
+    
+     require_once($_SERVER["DOCUMENT_ROOT"]. "/config/database.php");
+     $stmnt= $mysqli->query("SELECT*FROM usuarios WHERE id=$id");
+     $result=$stmnt->fetch_assoc();
+    // var_dump($result);
+     $texto=strval($result["bio"]);
+    
+ 
 
-        $phone=($_SESSION["user_data"]["phone"]!=NULL)?$_SESSION["user_data"]["phone"]:"Edit your phone number";
 
-        $photo=($_SESSION["user_data"]["photo"]!=NULL)?$_SESSION["user_data"]["photo"]:"Add a profile picture";
+
+        $email = $result["email"];
+
+        $name= ($result["nombre"]!=NULL)? $result["nombre"]:"Add your name";
+
+        $bio= ($result["bio"]!=NULL)?$result["bio"]:"Edit your Bio";
+
+        $phone=($result["phone"]!=NULL)?$result["phone"]:"Edit your phone number";
+
+        $photo=($result["photo"]!=NULL)?$result["photo"]:"Add a profile picture";
 
 
 
@@ -41,11 +63,9 @@
         $hidenpass=str_repeat('*',strlen($letters));
 
 
-
-       var_dump($_SESSION["user_data"]);
-
+       
         
-        echo"<h1>Bienvenido, usuario con el correo: $email</h1>";
+        //echo"<h1>Bienvenido, usuario con el correo: $email</h1>";
 
 
     ?>
@@ -53,10 +73,29 @@
         <div class="container">
             <img class="logolg" src="/assets/devchallenges.svg" alt="">
             <div class="profileInfo">
-                <img src="/assets/user-solid.svg" alt="" width="30">
-                <p class="name"><strong><?php echo$name?></strong></p>
-            </div>
+                <div class="namecontainer">
+                    <img src="/assets/user-solid.svg" alt="" width="30">
+                    <p class="name"><strong><?php echo$name?></strong></p>
+                </div>
 
+
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle btnn1" type="button" data-bs-toggle="dropdown"
+                        data-bs-display="static" aria-expanded="false"></button>
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start listadrp">
+                        <li class="eli"><button class="btnli"><i class="fa-solid fa-user"></i><a href="/views/dashboard.php">My Profile</a></button></li>
+                        <li class="eli"><button class="btnli"><i class="fa-solid fa-user-group"></i><a href="#">Group chat</a></button></li>
+                        <li class="eli"><button class="btnli"><i class="fa-solid fa-arrow-right-from-bracket"></i><a
+                                href="/handle_db/logout.php">Logout</a></li></button>
+                    </ul>
+                </div>
+
+            </div>
+            <script>
+            function redirect() {
+                window.location.href = '/views/edit.php'
+            }
+            </script>
 
 
     </nav>
@@ -70,28 +109,47 @@
 
             <div class="detailsContainer">
                 <div class="Profiled">
-                    <h2>Profile</h2>
-                    <P>Some info may be visible to other people</P>
+                    <div class="profh">
+                        <h2>Profile</h2>
+                        <P>Some info may be visible to other people</P>
+                    </div>
+                    <div>
+                        <button class="buttonEdt" onclick="redirect()">edit</button>
+                    </div>
                 </div>
 
+
+
                 <ul class="listLog">
-                    <li class="elist"><p class="dcrpt">PHOTO </p><?php echo"<p class='useri'> $photo</p>"?></li>
-                    <li class="elist"><p class="dcrpt">NAME </p><?php echo"<p class='useri'> $name</p>"?></li>
-                    <li class="elist"><p class="dcrpt">BIO </p><?php echo"<p class='useri'> $bio</p>"?></li>
-                    <li class="elist"><p class="dcrpt">PHONE </p><?php echo"<p class='useri'> $phone</p>"?></li>
-                    <li class="elist"><p class="dcrpt">EMAIL </p><?php echo"<p class='useri'> $email</p>"?></li>
-                    <li class="elist"><p class="dcrpt">PASSWORD </p><?php echo"<p class='useri'> $hidenpass</p>"?></li>
+                    <li class="elist">
+                        <p class="dcrpt">PHOTO </p><?php echo"<p class='useri'> $photo</p>"?>
+                    </li>
+                    <li class="elist">
+                        <p class="dcrpt">NAME </p><?php echo"<p class='useri'> $name</p>"?>
+                    </li>
+                    <li class="elist">
+                        <p class="dcrpt">BIO </p><?php echo"<p class='useri'> $bio</p>"?>
+                    </li>
+                    <li class="elist">
+                        <p class="dcrpt">PHONE </p><?php echo"<p class='useri'> $phone</p>"?>
+                    </li>
+                    <li class="elist">
+                        <p class="dcrpt">EMAIL </p><?php echo"<p class='useri'> $email</p>"?>
+                    </li>
+                    <li class="elist">
+                        <p class="dcrpt">PASSWORD </p><?php echo"<p class='useri'> $hidenpass</p>"?>
+                    </li>
                 </ul>
 
             </div>
 
-            <a href="/handle_db/logout.php">Logout</a>
+
         </div>
 
 
 
 
-
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

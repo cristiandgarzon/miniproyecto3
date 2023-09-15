@@ -14,13 +14,84 @@
     display: flex;
     align-items: baseline;
     justify-content: baseline;
+    position: relative;
+    
 }
+
+.namecontainer{
+    display: flex;
+    position: absolute;
+    top: 1px;
+    right: 120px;
+}
+.btnn1{
+    background-color: transparent;
+    color: black;
+    border: none;
+    
+}
+.btnn1:hover{
+    background-color: transparent;
+    color: black;
+    border: none;
+}
+.dropdown{
+    
+    padding-left: 8rem;
+    
+    
+    
+}
+.listadrp{
+    border-radius: 12px;
+
+}
+.dropdown a{
+    text-decoration: none;
+    color: black;
+}
+.eli{
+    width: 100%;
+    margin-bottom: 5px;
+}
+.btnli{
+    width: 100%;
+    background: transparent;
+    border-radius: 5px;
+    border: none;
+    
+}
+.btnli:hover{
+    background-color: lightgray;
+}
+
+
 .profileInfo{
     display: flex;
     align-items: center;
     align-items: center;
     justify-content: center;
     
+}
+.Profiled{
+    display: flex;
+    align-items: center;
+    position: relative;
+    border-bottom: solid 3px lightgrey;
+}
+.profh{
+    padding-left: 2rem;
+    margin-top: 1rem;
+}
+
+.buttonEdt{
+    background-color: transparent;
+    padding: 0.2rem 2rem;
+    border-radius: 12px;
+    border: solid 3px lightgray;
+    position: absolute;
+    top: 30px; 
+    right: 90px;
 }
 .name{
     margin-top:17px;
@@ -66,13 +137,9 @@
     width: 100%;
     display: flex;
     align-self: center;
-    justify-content: space-between;
-    border: solid rgb(221, 215, 215) 2px;
-    
+    justify-content: space-between;    
     align-items: center;
-    
-
-    
+    padding-left: 5rem;
     
 }
 

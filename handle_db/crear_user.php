@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"]=== "POST"){
             echo"error al registrar usuario";
         }
      
-     //aca estamos viendo si el correo esta duplicado y de estarlo se crea duplicado 
+     //aca estamos viendo si el correo esta duplicado y de estarlo se crea lariable de session duplicado 
    }catch(mysqli_sql_exception $e){
         
         if($mysqli->errno === 1062){
