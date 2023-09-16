@@ -11,6 +11,11 @@ if ($_SERVER["REQUEST_METHOD"]=== "POST"){
         $result=$mysqli->query("INSERT INTO usuarios(email, contrasena)VALUES('$correo','$hash')");
 
         if($result){
+            $data=$mysqli->query("SELECT * FROM usuarios WHERE email='$correo'");
+            $data=$data->fetch_assoc();
+            session_start();
+            $_SESSION["user_data"]=$data;
+
             header("location:/views/dashboard.php");
             
         }else{

@@ -1,12 +1,15 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"]=== "POST"){
  var_dump($_POST);
+ 
+ echo($_FILES["imagen"]["tmp_name"]);
 
+  //session_start();
 
   $id=$_POST["id"];
   $newemail= trim($_POST["email"]);
   $newcontrasena=trim($_POST["contrasena"]);
-  $newphoto=$_POST["imagen"];
+  $newphoto=addslashes(file_get_contents($_FILES["imagen"]["tmp_name"]));
   $newname=$_POST["nombre"];
   $newbio=$_POST["bio"];
   $newphone=$_POST["phone"];
@@ -14,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"]=== "POST"){
 
  
 
-$new_hash=password_hash($newcontrasena, PASSWORD_DEFAULT);
+ $new_hash=password_hash($newcontrasena, PASSWORD_DEFAULT);
 
   require_once($_SERVER["DOCUMENT_ROOT"]."/config/database.php");
 
@@ -22,10 +25,10 @@ $new_hash=password_hash($newcontrasena, PASSWORD_DEFAULT);
 
     $result=$mysqli->query("UPDATE usuarios SET email='$newemail',contrasena='$new_hash', photo='$newphoto', nombre='$newname', bio='$newbio', phone=$newphone WHERE id=$id");
 
-    if($result){
-       header("location:/views/dashboard.php");
+   if($result){
+    header("location:/views/dashboard.php");
        
-   }else{
+  }else{
        echo"error: ". $e->getMessage();;
    }
 
@@ -37,7 +40,7 @@ $new_hash=password_hash($newcontrasena, PASSWORD_DEFAULT);
         
     if($mysqli->errno === 1062){
         
-        session_start();
+        //session_start();
         $_SESSION["duplicado"]=true; 
         header("Location: /views/update.php");
         

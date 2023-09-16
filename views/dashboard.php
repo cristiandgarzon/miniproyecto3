@@ -54,7 +54,7 @@
 
         $phone=($result["phone"]!=NULL)?$result["phone"]:"Edit your phone number";
 
-        $photo=($result["photo"]!=NULL)?$result["photo"]:"Add a profile picture";
+        $photo=($result["photo"]!=NULL)?base64_encode($result["photo"]):"Add a profile picture";
 
 
 
@@ -74,7 +74,18 @@
             <img class="logolg" src="/assets/devchallenges.svg" alt="">
             <div class="profileInfo">
                 <div class="namecontainer">
-                    <img src="/assets/user-solid.svg" alt="" width="30">
+                    <div class=imagendropdown>
+
+                        <?php  
+                        if($result["photo"]!=NULL){
+                            echo "<img src='data:image/jpeg;base64," . $photo . "'>";
+                        }else{
+                            echo"<img src='/assets/user-solid.svg' alt='' width='30' >";
+                        }
+                        ?>
+                    </div>
+
+
                     <p class="name"><strong><?php echo$name?></strong></p>
                 </div>
 
@@ -83,10 +94,12 @@
                     <button class="btn btn-secondary dropdown-toggle btnn1" type="button" data-bs-toggle="dropdown"
                         data-bs-display="static" aria-expanded="false"></button>
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start listadrp">
-                        <li class="eli"><button class="btnli"><i class="fa-solid fa-user"></i><a href="/views/dashboard.php">My Profile</a></button></li>
-                        <li class="eli"><button class="btnli"><i class="fa-solid fa-user-group"></i><a href="#">Group chat</a></button></li>
+                        <li class="eli"><button class="btnli"><i class="fa-solid fa-user"></i><a
+                                    href="/views/dashboard.php">My Profile</a></button></li>
+                        <li class="eli"><button class="btnli"><i class="fa-solid fa-user-group"></i><a href="#">Group
+                                    chat</a></button></li>
                         <li class="eli"><button class="btnli"><i class="fa-solid fa-arrow-right-from-bracket"></i><a
-                                href="/handle_db/logout.php">Logout</a></li></button>
+                                    href="/handle_db/logout.php">Logout</a></li></button>
                     </ul>
                 </div>
 
@@ -101,7 +114,8 @@
     </nav>
     <div class="titulolog">
         <h1>Personal Info</h1>
-        <p>Basic info, like your name and photo</ </div>
+        <p>Basic info, like your name and photo</ 
+    </div>
 
 
 
@@ -122,7 +136,20 @@
 
                 <ul class="listLog">
                     <li class="elist">
-                        <p class="dcrpt">PHOTO </p><?php echo"<p class='useri'> $photo</p>"?>
+                        <p class="dcrptFirst">PHOTO </p>
+                        <div class="imgcontainer">
+                            <div class="imageninfo">
+                                <?php  
+                             if($result["photo"]!=NULL){
+                            echo "<img src='data:image/jpeg;base64," . $photo . "'>";
+                            }else{
+                            echo"<img src='/assets/user-solid.svg' alt=''  >";
+                            }
+                        ?>
+                            </div>
+                        </div>
+
+
                     </li>
                     <li class="elist">
                         <p class="dcrpt">NAME </p><?php echo"<p class='useri'> $name</p>"?>
@@ -136,7 +163,7 @@
                     <li class="elist">
                         <p class="dcrpt">EMAIL </p><?php echo"<p class='useri'> $email</p>"?>
                     </li>
-                    <li class="elist">
+                    <li class="elistLast">
                         <p class="dcrpt">PASSWORD </p><?php echo"<p class='useri'> $hidenpass</p>"?>
                     </li>
                 </ul>

@@ -19,7 +19,8 @@
     $result=$stmnt->fetch_assoc();
     //var_dump($result);
     $texto=strval($result["bio"]);
-    $name=$result["nombre"]
+    $name=$result["nombre"];
+    $photo=base64_encode($result["photo"]);
     
  
 ?>
@@ -33,12 +34,12 @@
     <title>endit</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-        <script src="https://kit.fontawesome.com/4baf7d2e5d.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/4baf7d2e5d.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/css/edit.css">
 </head>
 
 <body class="bodyedit">
-    
+
 
 
     <nav class="navbar navbar-light bg-light">
@@ -46,7 +47,18 @@
             <img class="logolg" src="/assets/devchallenges.svg" alt="">
             <div class="profileInfo">
                 <div class="namecontainer">
-                    <img src="/assets/user-solid.svg" alt="" width="30">
+                    <div class="imagennav">
+                        <?php  
+                        if($result["photo"]!=NULL){
+                            echo "<img src='data:image/jpeg;base64," . $photo . "'>";
+                        }else{
+                            echo"<img src='/assets/user-solid.svg' alt='' width='30' >";
+                        }
+                        ?>
+                    </div>
+
+
+
                     <p class="name"><strong><?php echo$name?></strong></p>
                 </div>
 
@@ -55,10 +67,12 @@
                     <button class="btn btn-secondary dropdown-toggle btnn1" type="button" data-bs-toggle="dropdown"
                         data-bs-display="static" aria-expanded="false"></button>
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start listadrp">
-                        <li class="eli"><button class="btnli"><i class="fa-solid fa-user"></i><a href="/views/dashboard.php">My Profile</a></button></li>
-                        <li class="eli"><button class="btnli"><i class="fa-solid fa-user-group"></i><a href="#">Group chat</a></button></li>
+                        <li class="eli"><button class="btnli"><i class="fa-solid fa-user"></i><a
+                                    href="/views/dashboard.php">My Profile</a></button></li>
+                        <li class="eli"><button class="btnli"><i class="fa-solid fa-user-group"></i><a href="#">Group
+                                    chat</a></button></li>
                         <li class="eli"><button class="btnli"><i class="fa-solid fa-arrow-right-from-bracket"></i><a
-                                href="/handle_db/logout.php">Logout</a></li></button>
+                                    href="/handle_db/logout.php">Logout</a></li></button>
                     </ul>
                 </div>
 
@@ -72,42 +86,53 @@
     <a href="/views/dashboard.php">Back</a><br><br>
 
     <div class="infocontainer">
-        <form action="/handle_db/update.php" method="post">
+        <form action="/handle_db/update.php" method="post" enctype="multipart/form-data">
             <input type="number" name="id" hidden value="<?=$result["id"] ?>">
-            <div>
-                <img src="/assets/user-solid.svg" width="50" alt="">
+            <div class="imgcontainer">
+                <div class="imageneditm">
+                    <?php  
+                        if($result["photo"]!=NULL){
+                            echo "<img src='data:image/jpeg;base64," . $photo . "'>";
+                        }else{
+                            echo"<img src='/assets/user-solid.svg' alt='' width='50' >";
+                        }
+                        ?>
+            </div>
+
+
                 <label for="imagen">ADD PHOTO</label>
-                <input type="file" id="imagen" name="imagen" accept="iamage/jpeg, image/png " hidden>
+                <input type="file" id="imagen" name="imagen" accept=".jpeg, .png, .jpg " hidden>
 
             </div><br><br>
             <div class="mb-3">
-                <label class="form-label">name</label><br>
-                <input type="text" class="form-control" name="nombre" value='<?=($result["nombre"]!=NULL)?$result["nombre"]:"Enter your name . . .";?>'>
+                <label class="form-label">Name</label><br>
+                <input type="text" class="form-control" name="nombre"
+                    value='<?=($result["nombre"]!=NULL)?$result["nombre"]:"Enter your name . . .";?>'>
             </div>
 
 
             <div class="mb-3">
                 <label>Bio</label><br>
-                <textarea type="text" class="form-control" rows="3" name="bio" minlength="20"><?=($result["bio"]!=NULL)?$result["bio"]:"Enter your bio . . .";?></textarea>
+                <textarea type="text" class="form-control" rows="3" name="bio"
+                    minlength="20"><?=($result["bio"]!=NULL)?$result["bio"]:"Enter your bio . . .";?></textarea>
             </div>
 
             <div class="mb-3">
                 <label class="form-label">Phone</label><br>
-                <input type="number" class="form-control" name="phone" 
-                    
+                <input type="number" class="form-control" name="phone"
                     value='<?=($result["phone"])?$result["phone"]:"Enter your phone . . .";?>'>
             </div>
 
 
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Email</label>
-                <input type="email" name="email" class="form-control" required value='<?=($result["email"]!=NULL)?$result["email"]:"Enter your Email . . .";?>'>
+                <input type="email" name="email" class="form-control" required
+                    value='<?=($result["email"]!=NULL)?$result["email"]:"Enter your Email . . .";?>'>
 
             </div>
             <div class="mb-3">
                 <label class="form-label">Password</label>
-                <input type="password" name="contrasena" class="form-control" 
-                    minlength="4" required>
+                <input type="password" name="contrasena" class="form-control" minlength="4" required>
 
             </div>
 

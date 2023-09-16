@@ -15,6 +15,7 @@
     align-items: baseline;
     justify-content: baseline;
     position: relative;
+    margin-top: 1rem;
     
 }
 
@@ -24,6 +25,24 @@
     top: 1px;
     right: 120px;
 }
+/*imagendesde la base de datos */
+.imagendropdown{
+    width: 70px;
+    border-radius: 50%; 
+    overflow: hidden; 
+
+}
+.imagendropdown img{
+    width: 100%;
+    height: auto;
+}
+
+
+
+/*fin estilos imagen */
+
+
+
 .btnn1{
     background-color: transparent;
     color: black;
@@ -93,9 +112,31 @@
     top: 30px; 
     right: 90px;
 }
+.buttonEdt:hover{
+    background-color: black; 
+    color: white;
+}
 .name{
     margin-top:17px;
 }
+
+/*estilos imagen desde la base de datos en el perfil*/
+.imgcontainer{
+    border-left: solid lightgray 3px;
+    padding: 1rem;
+}
+.imageninfo{
+    width: 100px; 
+    height: 100px; 
+    border-radius: 50%; 
+    overflow: hidden; 
+    
+}
+.imageninfo img{
+    width: 100%;
+    height: auto;
+}
+/*fin estilos imagen */
 .titulolog{
     width: 100%;
     display: flex;
@@ -115,10 +156,11 @@
 .detailsContainer{
     
     width: 90%;
-    height: 45vh;
+    height: 100%;
     justify-items: center;
     justify-content: center;
-    border: solid rgb(221, 215, 215) 2px;
+    background-color: rgb(226, 228, 230);
+    border: solid rgb(7, 7, 7) 2px;
     border-radius: 25px;
     min-width: 350px;
     
@@ -133,24 +175,44 @@
     padding: 0;
     
 }
+
+
 .elist{
     width: 100%;
     display: flex;
     align-self: center;
-    justify-content: space-between;    
+    justify-content: flex-start;   
     align-items: center;
     padding-left: 5rem;
+    border-bottom: solid lightgray 3px;
+    
     
 }
 
-.dcrpt{
+.elistLast{
+    width: 100%;
+    display: flex;
+    align-self: center;
+    justify-content: flex-start;   
+    align-items: center;
+    padding-left: 5rem;
+}
+
+
+.dcrptFirst{
     margin: 0px;
-    
     width: 20%;
     height: 50px;
-   
     
+}
+.dcrpt{
+    margin: 0px;
+    width: 20%;
+    height: 50px;
+    border-right: solid lightgrey 3px;
 }
 .useri{
     padding-right: 20rem;
+    margin-left: 1rem;
+    margin-top: 1rem;
 }
